@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { useAuth } from "@/contexts/AuthContext"
 import { useProperty } from "@/contexts/PropertyContext"
 import { Home, Bell, Upload, FileSpreadsheet, X } from "lucide-react"
 import { useState, useRef } from "react"
