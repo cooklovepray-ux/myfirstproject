@@ -1,0 +1,153 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "projectName": "StayFollowup MVP v1.0",
+    "lastUpdated": "2025-11-27T00:00:00.000Z"
+  },
+  "tags": {
+    "master": {
+      "description": "Main development context for StayFollowup MVP v1.0",
+      "createdAt": "2025-11-27T00:00:00.000Z",
+      "metadata": {}
+    }
+  },
+  "activeTag": "master",
+  "tasks": {
+    "master": [
+      {
+        "id": 1,
+        "title": "프로젝트 초기 설정 및 shadcn/ui 설치",
+        "description": "React + Vite + TypeScript 프로젝트에 shadcn/ui 설치 및 기본 설정 완료. components.json 설정 확인 및 필요한 초기 컴포넌트 추가.",
+        "status": "done",
+        "priority": "high",
+        "dependencies": [],
+        "details": "- shadcn/ui 초기화: npx shadcn-ui@latest init\n- components.json 설정 확인\n- 기본 컴포넌트 추가 (button, card, input 등)\n- TailwindCSS 설정 확인\n- 프로젝트 구조 정리",
+        "testStrategy": "shadcn/ui 컴포넌트가 정상적으로 import되고 렌더링되는지 확인",
+        "subtasks": []
+      },
+      {
+        "id": 2,
+        "title": "Supabase 프로젝트 생성 및 연동",
+        "description": "Supabase 클라이언트 설정, 환경 변수 구성, 기본 데이터베이스 스키마 설계",
+        "status": "done",
+        "priority": "high",
+        "dependencies": [],
+        "details": "- Supabase 프로젝트 생성\n- @supabase/supabase-js 패키지 설치\n- .env 파일에 VITE_SUPABASE_URL, VITE_SUPABASE_ANON_KEY 설정\n- lib/supabase.ts에 Supabase 클라이언트 초기화 코드 작성\n- 기본 데이터베이스 스키마 설계 (예약 테이블 등)",
+        "testStrategy": "Supabase 클라이언트가 정상적으로 초기화되는지 확인하고, 간단한 쿼리 테스트",
+        "subtasks": []
+      },
+      {
+        "id": 3,
+        "title": "Supabase Auth 연동 - 카카오/네이버 OAuth",
+        "description": "카카오/네이버 OAuth 소셜 로그인 구현. 인증 상태 관리 및 보호된 라우트 설정",
+        "status": "done",
+        "priority": "high",
+        "dependencies": [2],
+        "details": "- Supabase Auth 설정에서 카카오/네이버 OAuth 프로바이더 추가\n- OAuth 콜백 처리 로직 구현\n- 인증 상태 관리 Context/Provider 생성\n- 보호된 라우트 컴포넌트 구현\n- 로그인/로그아웃 기능 구현",
+        "testStrategy": "카카오/네이버 로그인이 정상적으로 작동하고, 인증 상태가 올바르게 관리되는지 확인",
+        "subtasks": []
+      },
+      {
+        "id": 4,
+        "title": "메인 라우팅 구조 구축",
+        "description": "React Router 설정 및 5개 주요 라우트 생성 (Landing, Dashboard, Calendar, Reservation-form, Settings). 기본 레이아웃 컴포넌트 구현",
+        "status": "done",
+        "priority": "high",
+        "dependencies": [1, 3],
+        "details": "- react-router-dom 설치 및 설정\n- 5개 주요 라우트 생성:\n  * / (Landing 페이지)\n  * /dashboard (대시보드)\n  * /calendar (달력)\n  * /reservation-form (예약 등록)\n  * /settings (설정)\n- 기본 레이아웃 컴포넌트 구현 (Header, Navigation 등)\n- 보호된 라우트 적용",
+        "testStrategy": "모든 라우트가 정상적으로 접근 가능하고, 보호된 라우트가 인증 없이 접근 불가능한지 확인",
+        "subtasks": []
+      },
+      {
+        "id": 5,
+        "title": "랜딩 페이지 구현",
+        "description": "로그인 전 랜딩 페이지 UI 구현. 헤더, 히어로 섹션, 기능 소개, CTA 버튼 포함. shadcn/ui 컴포넌트 활용",
+        "status": "done",
+        "priority": "medium",
+        "dependencies": [4],
+        "details": "- 헤더: 로고, 기능 소개 링크, 요금제 링크, 로그인 버튼\n- 히어로 섹션: 핵심 메시지 + CTA 버튼 (시작하기)\n- 기능 소개 섹션: 예약 자동화, 달력 통합관리, Flash-Sale\n- 후기 섹션: 실제 숙소 호스트 간단 의견 (플레이스홀더)\n- 요금제 섹션: 월 구독형 가격 3단계 (Starter/Pro/Premium)\n- 푸터: 개인정보처리방침, 이용약관, 이메일 문의\n- Mobile-First 반응형 디자인",
+        "testStrategy": "랜딩 페이지가 모든 섹션을 포함하고 있고, 모바일에서 정상적으로 표시되는지 확인",
+        "subtasks": []
+      },
+      {
+        "id": 6,
+        "title": "대시보드 화면 구현 - 오늘/내일 예약 카드 리스트",
+        "description": "오늘/내일 예약 카드 리스트만 먼저 구현. 예약 데이터 표시 컴포넌트 및 카드 UI 구현. Supabase에서 예약 데이터 조회",
+        "status": "done",
+        "priority": "high",
+        "dependencies": [2, 4],
+        "details": "- 예약 데이터 모델 설계 및 Supabase 테이블 생성\n- 오늘/내일 예약 필터링 로직 구현\n- 예약 카드 컴포넌트 구현 (shadcn/ui Card 활용)\n- 예약 카드에 표시할 정보: 이름, 전화번호, 입실/퇴실 날짜\n- Supabase에서 예약 데이터 조회 및 표시\n- 로딩 상태 및 빈 상태 처리",
+        "testStrategy": "오늘/내일 예약이 정상적으로 표시되고, 카드 UI가 모바일에서 잘 보이는지 확인",
+        "subtasks": []
+      },
+      {
+        "id": 7,
+        "title": "달력 뷰 Placeholder 구현",
+        "description": "임시 Placeholder 컴포넌트로 달력 화면 생성. 향후 실제 달력 기능 구현을 위한 기본 구조만 마련",
+        "status": "done",
+        "priority": "medium",
+        "dependencies": [4],
+        "details": "- Calendar 라우트에 Placeholder 컴포넌트 생성\n- 기본 레이아웃 및 스타일링\n- \"달력 기능은 곧 추가될 예정입니다\" 같은 메시지 표시\n- 향후 확장을 위한 컴포넌트 구조 준비",
+        "testStrategy": "달력 라우트에 접근 시 Placeholder가 정상적으로 표시되는지 확인",
+        "subtasks": []
+      },
+      {
+        "id": 8,
+        "title": "예약 등록 폼 구현",
+        "description": "Reservation-form 화면 구현. 이름, 전화번호, 입실/퇴실 날짜 입력 폼. shadcn/ui Form 컴포넌트 활용. Supabase에 예약 데이터 저장",
+        "status": "done",
+        "priority": "high",
+        "dependencies": [2, 4],
+        "details": "- shadcn/ui Form 컴포넌트 추가 및 설정\n- 예약 등록 폼 필드:\n  * 이름 (text input)\n  * 전화번호 (tel input)\n  * 입실 날짜 (date picker)\n  * 퇴실 날짜 (date picker)\n- 폼 validation 구현\n- Supabase에 예약 데이터 저장 로직\n- 성공/에러 메시지 처리\n- 제출 후 대시보드로 리다이렉트",
+        "testStrategy": "예약 등록 폼이 정상적으로 작동하고, 데이터가 Supabase에 저장되는지 확인",
+        "subtasks": []
+      },
+      {
+        "id": 9,
+        "title": "설정 화면 기본 구조",
+        "description": "Settings 화면 기본 레이아웃 구현. 계정 정보, 로그아웃 기능 포함",
+        "status": "done",
+        "priority": "medium",
+        "dependencies": [3, 4],
+        "details": "- 설정 화면 기본 레이아웃\n- 계정 정보 섹션 (사용자 정보 표시)\n- 로그아웃 버튼 구현\n- 향후 확장을 위한 구조 준비 (구독 관리, 숙소 정보 등)",
+        "testStrategy": "설정 화면이 정상적으로 표시되고, 로그아웃 기능이 작동하는지 확인",
+        "subtasks": []
+      },
+      {
+        "id": 10,
+        "title": "알림 기능 파일 구조 준비",
+        "description": "향후 알림 기능 구현을 위한 디렉토리 구조 및 기본 파일 생성. 알림 설정, 알림 발송 로직, 알림 로그 관련 폴더 및 플레이스홀더 파일 생성",
+        "status": "done",
+        "priority": "low",
+        "dependencies": [4],
+        "details": "- src/features/notifications 디렉토리 생성\n- 알림 설정 관련 파일 구조:\n  * components/NotificationSettings.tsx (플레이스홀더)\n  * hooks/useNotificationSettings.ts (플레이스홀더)\n- 알림 발송 로직 관련:\n  * services/notificationService.ts (플레이스홀더)\n  * types/notification.ts (타입 정의)\n- 알림 로그 관련:\n  * components/NotificationLog.tsx (플레이스홀더)\n- README.md에 향후 구현 계획 문서화",
+        "testStrategy": "파일 구조가 올바르게 생성되고, import 경로가 정상적으로 작동하는지 확인",
+        "subtasks": []
+      },
+      {
+        "id": 11,
+        "title": "반응형 디자인 적용",
+        "description": "모든 화면에 Mobile-First 반응형 디자인 적용. TailwindCSS 유틸리티 클래스를 활용한 모바일/태블릿/데스크톱 대응",
+        "status": "done",
+        "priority": "medium",
+        "dependencies": [5, 6, 7, 8, 9],
+        "details": "- 모든 화면의 모바일 레이아웃 확인 및 개선\n- 태블릿 및 데스크톱 브레이크포인트 대응\n- TailwindCSS 반응형 유틸리티 클래스 활용 (sm:, md:, lg:)\n- 터치 친화적인 UI 요소 크기 조정\n- 네비게이션 모바일 최적화",
+        "testStrategy": "모든 화면이 다양한 화면 크기에서 정상적으로 표시되는지 확인 (모바일, 태블릿, 데스크톱)",
+        "subtasks": []
+      },
+      {
+        "id": 12,
+        "title": "기본 스타일링 및 테마 설정",
+        "description": "shadcn/ui 테마 커스터마이징, 전역 스타일 설정, 다크모드 지원 준비",
+        "status": "done",
+        "priority": "medium",
+        "dependencies": [1],
+        "details": "- shadcn/ui 테마 커스터마이징 (색상, 타이포그래피)\n- 전역 CSS 스타일 설정 (index.css)\n- CSS 변수를 통한 테마 토큰 관리\n- 다크모드 지원 준비 (토글 기능은 MVP 이후)\n- 브랜드 컬러 적용",
+        "testStrategy": "테마가 일관되게 적용되고, 모든 컴포넌트가 올바른 스타일을 사용하는지 확인",
+        "subtasks": []
+      }
+    ]
+  }
+}
+
+
