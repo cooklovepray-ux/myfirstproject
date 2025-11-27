@@ -1,7 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card"
 import type { Reservation } from "@/types/database"
 import { Calendar, Phone } from "lucide-react"
-import { format } from "date-fns"
 import { Badge } from "@/components/ui/badge"
 
 interface ReservationSummaryCardProps {

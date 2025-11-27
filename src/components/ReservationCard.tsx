@@ -1,7 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import type { Reservation } from "@/types/database"
-import { Calendar, Phone, User, MessageSquare, Edit, Trash2, Star, MessageCircle } from "lucide-react"
+import { Calendar, Phone, MessageSquare, Edit, Trash2, Star } from "lucide-react"
 import { useState } from "react"
 import { EditReservationDialog } from "@/components/EditReservationDialog"
 import { useReservations } from "@/hooks/useReservations"

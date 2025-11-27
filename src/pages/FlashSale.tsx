@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { useAuth } from "@/contexts/AuthContext"
 import { useProperty } from "@/contexts/PropertyContext"
-import { Home, Bell, Users, Calendar as CalendarIcon, Upload, FileSpreadsheet, X } from "lucide-react"
+import { Home, Bell, Upload, FileSpreadsheet, X } from "lucide-react"
 import { useState, useRef } from "react"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -12,7 +12,6 @@ import { useSubscribers } from "@/hooks/useSubscribers"
 import * as XLSX from "xlsx"
 
 export function FlashSale() {
-  const { user } = useAuth()
   const { currentProperty } = useProperty()
   const { subscribers: dbSubscribers, bulkCreateSubscribers, refetch } = useSubscribers()
   const [sending, setSending] = useState(false)

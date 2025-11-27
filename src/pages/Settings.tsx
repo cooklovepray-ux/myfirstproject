@@ -5,7 +5,7 @@ import { useAuth } from "@/contexts/AuthContext"
 import { useProperty } from "@/contexts/PropertyContext"
 import { useProperties } from "@/hooks/useProperties"
 import { NotificationSettings } from "@/features/notifications/components/NotificationSettings"
-import { Home, User, Mail, Phone, LogOut, Building2, Plus, Edit, Trash2 } from "lucide-react"
+import { Home, User, Mail, Phone, LogOut, Building2, Plus, Trash2 } from "lucide-react"
 import { useNavigate } from "react-router-dom"
 import { useState } from "react"
 import {
@@ -21,10 +21,9 @@ import { Label } from "@/components/ui/label"
 export function Settings() {
   const { user, signOut } = useAuth()
   const { currentProperty, setCurrentProperty, properties } = useProperty()
-  const { createProperty, updateProperty, deleteProperty, setDefaultProperty, refetch } = useProperties()
+  const { createProperty, deleteProperty, setDefaultProperty, refetch } = useProperties()
   const navigate = useNavigate()
   const [isAddingProperty, setIsAddingProperty] = useState(false)
-  const [isEditingProperty, setIsEditingProperty] = useState<string | null>(null)
   const [newPropertyName, setNewPropertyName] = useState("")
   const [newPropertyAddress, setNewPropertyAddress] = useState("")
   const [newPropertyPhone, setNewPropertyPhone] = useState("")
@@ -50,12 +49,19 @@ export function Settings() {
       return
     }
 
+    if (!user) {
+      alert("로그인이 필요합니다.")
+      return
+    }
+
     try {
       const newProperty = await createProperty({
         name: newPropertyName.trim(),
         address: newPropertyAddress.trim() || null,
         phone: newPropertyPhone.trim() || null,
         description: null,
+        user_id: user.id,
+        is_default: properties.length === 0,
       })
       
       // 새로 추가된 숙소를 현재 숙소로 설정

@@ -5,7 +5,7 @@ import { useAuth } from "@/contexts/AuthContext"
 import { Home, Calendar as CalendarIcon } from "lucide-react"
 
 export function Calendar() {
-  const { user, signOut } = useAuth()
+  const { signOut } = useAuth()
 
   return (
     <div className="min-h-screen p-4 md:p-8">

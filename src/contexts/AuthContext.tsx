@@ -1,11 +1,11 @@
 import { createContext, useContext, useEffect, useState } from 'react'
+import type { User as SupabaseUser } from '@supabase/supabase-js'
 import { supabase } from '@/lib/supabase'
 
 type Session = Awaited<ReturnType<typeof supabase.auth.getSession>>['data']['session']
-type User = Session extends { user: infer U } ? U : null
 
 interface AuthContextType {
-  user: User | null
+  user: SupabaseUser | null
   session: Session
   loading: boolean
   signInWithKakao: () => Promise<void>
@@ -16,7 +16,7 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [user, setUser] = useState<User | null>(null)
+  const [user, setUser] = useState<SupabaseUser | null>(null)
   const [session, setSession] = useState<Session>(null)
   const [loading, setLoading] = useState(true)
 
@@ -67,7 +67,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const signInWithNaver = async () => {
     const { error } = await supabase.auth.signInWithOAuth({
-      provider: 'naver',
+      provider: 'naver' as any,
       options: {
         redirectTo: `${window.location.origin}/auth/callback`,
       },
@@ -102,7 +102,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   )
 }
 
-export function useAuth() {
+export function useAuth(): AuthContextType {
   const context = useContext(AuthContext)
   if (context === undefined) {
     throw new Error('useAuth must be used within an AuthProvider')

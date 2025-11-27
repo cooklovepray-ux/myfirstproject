@@ -16,9 +16,9 @@ import type { NotificationLog } from '../types/notification'
  */
 export function useNotificationLog() {
   const { user } = useAuth()
-  const [logs, setLogs] = useState<NotificationLog[]>([])
+  const [logs] = useState<NotificationLog[]>([])
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<Error | null>(null)
+  const [error] = useState<Error | null>(null)
 
   useEffect(() => {
     if (!user) {

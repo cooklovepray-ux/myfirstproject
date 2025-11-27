@@ -16,9 +16,9 @@ import type { NotificationSettings } from '../types/notification'
  */
 export function useNotificationSettings() {
   const { user } = useAuth()
-  const [settings, setSettings] = useState<NotificationSettings | null>(null)
+  const [settings] = useState<NotificationSettings | null>(null)
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<Error | null>(null)
+  const [error] = useState<Error | null>(null)
 
   useEffect(() => {
     if (!user) {
